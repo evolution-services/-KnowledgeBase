@@ -44,6 +44,91 @@ function fn(x, y = 5) {
 fn(5); // retorna 10
 ```
 
+## Array Find
+
+<p align="justify">
+O find() método retorna o valor do primeiro elemento da matriz que passa em uma função de teste.
+Este exemplo localiza (retorna o valor de) o primeiro elemento maior que 18:
+</p>
+
+##### Exemplo
+
+```JS
+var numbers = [4, 9, 16, 25, 29];
+var first = numbers.find(myFunction);
+
+function myFunction(value, index, array) {
+  return value > 18;
+}
+```
+Observe que a função usa 3 argumentos:
+
+- O valor do item
+- O índice do item
+- A própria matriz
+
+
+## Array FindIndex
+
+O findIndex()método retorna o índice do primeiro elemento da matriz que passa em uma função de teste.
+Este exemplo localiza o índice do primeiro elemento maior que 18:
+
+##### Exemplo
+```JS
+var numbers = [4, 9, 16, 25, 29];
+var first = numbers.findIndex(myFunction);
+
+function myFunction(value, index, array) {
+  return value > 18;
+}
+```
+Observe que a função usa 3 argumentos:
+
+- O valor do item
+- O índice do item
+- A própria matriz
+
+
+## Novas Propriedades de Número
+O ES6 adicionou as seguintes propriedades ao objeto Number:
+
+- EPSILON
+- MIN_SAFE_INTEGER
+- MAX_SAFE_INTEGER
+
+##### Exemplo
+```
+var x = Number.EPSILON;
+var x = Number.MIN_SAFE_INTEGER;
+var x = Number.MAX_SAFE_INTEGER;
+```
+
+
+## Novos Métodos Numéricos
+O ES6 adicionou 2 novos métodos ao objeto Number:
+
+- Number.isInteger()
+- Number.isSafeInteger()
+
+#### O método Number IsInteger
+O Number.isInteger() método retornará truese o argumento for um número inteiro.
+
+##### Exemplo
+```
+Number.isInteger(10);        // returns true
+Number.isInteger(10.5);      // returns false
+```
+
+#### O método Number IsSafeInteger
+Um número inteiro seguro é um número inteiro que pode ser representado exatamente como um número de precisão dupla.
+O Number.isSafeInteger() método retornará truese o argumento for um número inteiro seguro.
+
+##### Exemplo
+```
+Number.isSafeInteger(10);    // returns true
+Number.isSafeInteger(12345678901234567890);  // returns false
+```
+
 ## Higher-Order Functions
 
 #### Função de Ordem Superior
@@ -80,6 +165,7 @@ Func<Func<int,int>,Func<int,int>> twice = f => x => f(f(x));
 	Console.WriteLine(twice(y)(7)); // 13
 }
 ```
+
 ## Arrow Functions
 
 As funções de seta permitem uma sintaxe curta para escrever expressões de função.
