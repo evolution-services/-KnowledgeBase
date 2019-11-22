@@ -260,3 +260,346 @@ const x = (x, y) => x * y;
 ou
 const x = (x, y) => { return x * y };
 ```
+
+## Métodos e Operadores Práticos
+
+#### Os métodos que veremos:
+> 1. Spread operator
+>
+> 2. for…of iterator
+>
+> 3. includes()
+>
+> 4. some()
+>
+> 5. every()
+>
+> 6. filter()
+>
+> 7. map()
+>
+> 8. reduce()
+
+> Se você deseja se tornar um desenvolvedor web melhor, iniciar seu próprio negócio, ensinar outras pessoas ou melhorar suas habilidades de desenvolvimento, publicarei dicas e truques semanais nas mais recentes linguagens de desenvolvimento web. 
+
+
+## Spread operator
+
+O Operador de propagação **expande** uma matriz para seus elementos. Também pode ser usado para literais de objetos.
+
+**Por que devo usá-lo?**
+
+- É uma maneira simples e rápida de mostrar os itens de uma matriz
+- Funciona para matrizes e literais de objetos
+- É uma maneira rápida e intuitiva de passar argumentos
+- Requer apenas três pontos…
+
+**Exemplo:**
+digamos que você queira mostrar uma lista de alimentos favoritos sem criar uma função de loop. Use um operador de spread como este:
+
+```js
+const products = ['A', 'B', 'C'];
+console.log(...products);
+// A B C
+```
+
+
+## Rest
+
+A sintaxe de **rest parameter (parâmetros rest)** nos permite representar um número indefinido de argumentos como um array. 
+
+```
+function(a, b, ...theArgs) {
+  // ...
+}
+```
+
+Se o último argumento nomeado de uma função tiver prefixo com  `...`, ele irá se tornar um array em que os elemento de 0 (inclusive) até theArgs.length (exclusivo) são disponibilizados pelos argumentos atuais passados à função.
+
+No exemplo acima, `theArgs` irá coletar o terceiro argumento da função (porquê o primeiro é mapeado para `a`, e o segundo para `b`) e assim por diante em todos os argumentos consecutivos.
+
+### Diferença entre *rest parameters* e *`arguments` object*
+
+Há três diferenças principais entre *rest parameters* e os [`arguments`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) objects:
+
+- *rest parameters* são os únicos que não foram atribuidos a um nome separado, enquanto os `arguments` object contêm todos os argumentos passados para a função;
+- o objeto `arguments` não é um array, enquanto rest parameters são instâncias [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), isso significa que métodos como [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [`forEach`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) ou [`pop`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) podem ser aplicados diretamente;
+-  o objeto `arguments` possui a funcionalidade adicional de especificar ele mesmo (como a propriedade `callee`). 
+
+###  De arguments para array 
+
+ Rest parameters foram criados para reduzir o código padrão que foi induzida pelos argumentos 
+
+```js
+// Antes rest parameters, o seguinte codigo pode ser encontrado
+function f(a, b){
+  var args = Array.prototype.slice.call(arguments, f.length);
+  // ...
+}
+
+// esse é o equivalente
+function(a, b, ...args) {  
+}
+```
+
+#### **Exemplos**
+
+ Como `theArgs` é um array, você pode pegar número de elementos usando a propriedade `length`: 
+
+```js
+function fun1(...theArgs) {
+  console.log(theArgs.length);
+}
+fun1();  // 0
+fun1(5); // 1
+fun1(5, 6, 7); // 3
+```
+
+No próximo exemplo, nós usamos o rest parâmetro para buscar argumentos do segundo parâmetro para o fim. Nós multiplicamos eles pelo primeiro parâmetro: 
+
+```js
+function multiply(multiplier, ...theArgs) {
+  return theArgs.map(function (element) {
+    return multiplier * element;
+  });
+}
+var arr = multiply(2, 1, 2, 3); 
+console.log(arr); // [2, 4, 6]
+```
+
+ O próximo exemplo mostra como você pode usar metodos do Array em rest params, mas não no objeto `arguments`: 
+
+```js
+function sortRestArgs(...theArgs) {
+  var sortedArgs = theArgs.sort();
+  return sortedArgs;
+}
+console.log(sortRestArgs(5,3,7,1)); // Exibe 1,3,5,7
+
+function sortArguments() {
+  var sortedArgs = arguments.sort(); 
+  return sortedArgs; // isso nunca irá ocorrer
+}
+// throws a TypeError: arguments.sort is not a function
+console.log(sortArguments(5,3,7,1));
+```
+
+ a fim de usar o objeto `arguments`, você precisará converte-lo para um array antes. 
+
+
+## for…of iterator
+
+A `for...of`instrução faz um loop / itera pela coleção e fornece a capacidade de modificar itens específicos. Ele substitui a maneira convencional de fazer a `for-loop`.
+
+**Por que devo usá-lo?**
+
+- É uma maneira simples de adicionar ou atualizar um item
+- Para realizar cálculos (soma, multiplicação etc.)
+- Ao usar instruções condicionais (se, enquanto, alternar etc.)
+- Leva a código limpo e legível
+
+**Exemplo:**
+digamos que você tenha uma caixa de ferramentas e deseje mostrar todas as ferramentas dentro dela. O `for...of`iterador facilita.
+
+```js
+const categorias = ['Smartphones', 'Tables', 'Notebooks']
+for(const item of categorias){
+    console.log(item);
+}
+// Smarhphones
+// Tablets
+// Notebooks
+```
+
+## Includes()  method
+
+O `includes()`método é usado para verificar se existe uma sequência específica em uma coleção e retorna `true`or `false`. Lembre-se de que faz distinção entre maiúsculas e minúsculas: se o item dentro da coleção for `SCHOOL`e você procurar `school`, ele retornará `false`.
+
+**Por que devo usá-lo?**
+
+- Para criar uma funcionalidade de pesquisa simples
+- É uma abordagem intuitiva para determinar se existe uma string
+- Ele usa instruções condicionais para modificar, filtrar e assim por diante
+- Leva ao código legível
+
+**Exemplo:**
+digamos que, por qualquer motivo, você não esteja ciente de quais carros você tem na garagem e você precisa de um sistema para verificar se o carro que você deseja existe ou não. `includes()`para o resgate!
+
+```js
+const marcas = ['BMW', 'AUDI', 'MERCEDEZ'];
+const buscarMarca = marcas.includes('BMW');
+console.log(buscarMarca);
+// true
+```
+
+## Some() method
+
+O `some()`método verifica se existem alguns elementos em uma matriz e retorna `true`ou `false`. Isso é um pouco semelhante ao conceito do `includes()`método, exceto que o argumento é uma função e não uma string.
+
+**Por que devo usá-lo?**
+
+- Garante que **algum** item passe no teste
+- Ele executa instruções condicionais usando funções
+- Torne seu código declarativo
+- Alguns são bons o suficiente
+
+**Exemplo:**
+digamos que você seja proprietário de um clube e não se importe com quem entra no clube. Mas alguns não podem entrar porque estão bebendo demais (minha criatividade no seu melhor). Confira as diferenças entre ES5 e ES6 abaixo:
+
+#### **ES5**
+
+```js
+const idade = [16, 14, 18];
+idade.some(function(pessoa)){
+           return pessoa >= 18;
+           });
+// Output: true
+```
+
+#### **ES6**
+
+```js
+const idade = [16, 14, 18];
+idade.some((pessoa) => pessoa >= 18);
+// true
+```
+
+
+
+## Every() method
+
+O `every()`método percorre a matriz, verifica todos os itens e retorna `true`ou `false`. Mesmo conceito que `some()`. Exceto que todo item deve satisfazer a declaração condicional, caso contrário, ele retornará `false`.
+
+**Por que devo usá-lo?**
+
+- Ele garante que **todos os** itens passem no teste
+- Você pode executar instruções condicionais usando funções
+- Torne seu código declarativo
+
+**Exemplo:**
+Na última vez em que você permitiu que `some()`estudantes menores de idade entrassem no clube, alguém denunciou isso e a polícia o pegou. Dessa vez, você não deixará isso acontecer e garantirá que **todos** passem o limite de idade com o `every()`operador.
+
+#### **ES5**
+
+```js
+const idade = [17, 13, 18];
+idade.every(function(pessoa){
+return pessoa >= 18;
+});
+// Output: true
+```
+
+#### **ES6**
+
+```js
+const idade = [17, 13, 18];
+idade.every((pessoa) => pessoa >= 18);
+// true
+```
+
+
+
+## Filter() method
+
+O `filter()`método cria uma nova matriz com todos os elementos que passam no teste.
+
+**Por que devo usá-lo?**
+
+- Assim, você pode evitar alterar a matriz principal
+- Permite filtrar itens desnecessários
+- Fornece código mais legível
+
+**Exemplo:**
+suponha que você queira devolver apenas preços superiores ou iguais a 30. Filtre todos os outros preços…
+
+#### **ES5**
+
+```js
+const precos = [25, 30, 28, 15, 50, 45, 22, 42];
+idade.every(function(preco){
+return preco >= 30;
+});
+// Output: {30, 42, 45, 50}
+```
+
+#### **ES6**
+
+```js
+const precos = [25, 30, 28, 15, 50, 45, 22, 42];
+idade.every((preco) => preco >= 30);
+// true
+```
+
+
+
+## Map() method
+
+O `map()`método é semelhante ao `filter()`método em termos de retorno de uma nova matriz. No entanto, a única diferença é que ele é usado para modificar itens.
+
+**Por que devo usá-lo?**
+
+- Permite evitar alterações na matriz principal
+- Você pode modificar os itens que deseja
+- Fornece código mais legível
+
+**Exemplo:**
+digamos que você tenha uma lista de produtos com preços. Seu gerente precisa de uma lista para mostrar os novos preços depois de terem sido tributados em 25%. O `map()`método pode ajudá-lo.
+
+#### **ES5**
+
+```js
+const listaDePrecos = [300, 280, 150, 450];
+listaDePrecos.map(function(item){
+return item * 0.75;
+});
+// Output: [225, 210, 112.5, 337.5]
+```
+
+#### **ES6**
+
+```js
+const listaDePrecos = [300, 280, 150, 450];
+idade.every((item) => item * 0.75);
+// [225, 210, 112.5, 337.5]
+```
+
+
+
+## Reduce() method
+
+O `reduce()`método pode ser usado para transformar uma matriz em outra coisa, que pode ser um número inteiro, um objeto, uma cadeia de promessas (execução sequencial de promessas) etc. Por razões práticas, um caso de uso simples seria somar uma lista de números inteiros . Em resumo, "reduz" toda a matriz em um valor.
+
+**Por que devo usá-lo?**
+
+- Executar cálculos
+- Calcular um valor
+- Contar duplicatas
+- Agrupar objetos por propriedade
+- Executar promessas sequencialmente
+- É uma maneira rápida de realizar cálculos
+
+**Exemplo:**
+digamos que você queira descobrir suas despesas totais por uma semana. Use `reduce()`para obter esse valor.
+
+#### **ES5**
+
+```js
+const despesas = [300, 280, 150, 450];
+listaDePrecos.map(function(first, last){
+return first + last;
+});
+// Output: [1180]
+```
+
+#### **ES6**
+
+```js
+const despesas = [300, 280, 150, 450];
+idade.every((first, last) => first + last);
+// [1180]
+```
+
+------
+
+Global Ref:  https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/rest_parameters 
+
