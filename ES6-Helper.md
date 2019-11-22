@@ -228,9 +228,7 @@ No cálculo lambda sem tipo, todas as funções são de ordem superior; em um c�
 </p>
 
 
-$$
-{T_1}->{T_2})->{T_3}
-$$
+<img src="https://latex.codecogs.com/gif.latex?({T_1}->{T_2})->{T_3}" /> 
 
 
 #### Exemplos
