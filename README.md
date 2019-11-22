@@ -1,3 +1,49 @@
+## Classes no ES6
+
+<p align="justify">
+Uma classe é um tipo de função, mas, em vez de usar a palavra function- chave para iniciá-la, usamos a palavra-chave classe as propriedades são atribuídas dentro de um constructor() método.
+</p>
+<p align="justify">
+Use a palavra class- chave para criar uma classe e sempre adicione um método construtor.
+</p>
+<p align="justify">
+O método construtor é chamado sempre que o objeto de classe é inicializado.
+</p>
+
+##### Exemplo
+Uma definição de classe simples para uma classe chamada "Pessoa":
+
+```JS
+class Pessoa {
+  constructor(nome) {
+    this.Nome = nome;
+  }
+}
+```
+<p align="justify">
+Criando objetos usando a classe Pessoa:
+</p>
+
+```JS
+class Pessoa {
+  constructor(nome) {
+    this.Nome = nome;
+  }
+}
+pessoa = new Pessoa("Nome da Pessoa");
+```
+
+## Valores de parâmetro padrão
+ES6 permite que os parâmetros de função tenham valores padrão.
+
+```JS
+function fn(x, y = 5) {
+  // y é 5 se nenhum valor for passado como parametro
+  return x + y;
+}
+fn(5); // retorna 10
+```
+
 ## Higher-Order Functions
 
 #### Função de Ordem Superior
