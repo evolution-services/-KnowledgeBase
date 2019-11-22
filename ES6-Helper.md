@@ -157,9 +157,12 @@ Number.isSafeInteger(12345678901234567890);  // returns false
 ```
 
 > *Inteiros seguros são todos os números inteiros de - (2 53 - 1) a + (2 53 - 1).*
-> *Isso é seguro: 9007199254740991. Isso não é seguro: 9007199254740992.*
+>
+> *Isso é seguro: 9007199254740991.*
+>
+> *Isso não é seguro: 9007199254740992.*
 
-#### Novos Métodos Globais
+## Novos Métodos Globais
 O ES6 também adicionou 2 novos métodos de número global:
 
 - isFinite()
@@ -225,9 +228,11 @@ No cálculo lambda sem tipo, todas as funções são de ordem superior; em um c�
 </p>
 
 
-$$
+<img src="https://latex.codecogs.com/gif.latex?{T_1}->{T_2})->{T_3}" title="({T_1}->{T_2})->{T_3}" />
+
+<!--$$
 {T_1}->{T_2})->{T_3}
-$$
+$$-->
 
 
 #### Exemplos
@@ -257,4 +262,3 @@ const x = (x, y) => x * y;
 ou
 const x = (x, y) => { return x * y };
 ```
-
