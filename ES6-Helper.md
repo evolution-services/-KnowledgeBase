@@ -503,6 +503,8 @@ idade.every((pessoa) => pessoa >= 18);
 
 O `filter()`método cria uma nova matriz com todos os elementos que passam no teste.
 
+A função filter é bem semelhante ao map: ela também recebe um callback como parâmetro e também retorna um novo array, a única diferença é que filter, como o próprio nome diz, retorna um filtro dos elementos do array inicial baseado na função de callback.
+
 **Por que devo usá-lo?**
 
 - Assim, você pode evitar alterar a matriz principal
@@ -530,7 +532,28 @@ idade.every((preco) => preco >= 30);
 // true
 ```
 
+Imaginando que temos um array de inteiros e desejamos retornar apenas aqueles que são maiores do que 4. Podemos resolver assim usando o filter:
 
+#### **ES5**
+
+```js
+var numbers = [1, 4, 7, 10];
+
+var isBiggerThanFour = function(value) {
+    return value > 4;
+};
+
+var numbersBiggerThanFour = numbers.filter(isBiggerThanFour); // [7, 10]
+```
+
+#### **ES6**
+
+```js
+const numbers = [1, 4, 7, 10];
+const isBiggerThanFour = value => value > 4;
+
+const numbersBiggerThanFour = numbers.filter(isBiggerThanFour); // [7, 10]
+```
 
 ## Map() method
 
@@ -563,11 +586,64 @@ idade.every((item) => item * 0.75);
 // [225, 210, 112.5, 337.5]
 ```
 
+Nesse outro cenário abaixo, percebemos o reaproveitamento de código que podemos conseguir ao usar o map.
+Possuímos dois arrays de objetos diferentes, porém ambos tem o campo name, e precisamos de uma função que retorne um novo array apenas com os names dos objetos:
 
+#### **ES5**
+
+```js
+var students = [
+    { name: 'Anna', grade: 6 },
+    { name: 'John', grade: 4 },
+    { name: 'Maria', grade: 9 }
+];
+
+var teachers = [
+    { name: 'Mark', salary: 2500 },
+    { name: 'Todd', salary: 3700 },
+    { name: 'Angela', salary: 1900 }
+];
+
+var byName = function(object) {
+    return object.name;
+};
+
+var byNames = function(list) {
+    return list.map(byName);
+};
+
+byNames(students); // ["Anna", "John", "Maria"]
+byNames(teachers); // ["Mark", "Todd", "Angela"]
+```
+
+#### **ES6**
+
+```js
+const students = [
+    { name: 'Anna', grade: 6 },
+    { name: 'John', grade: 4 },
+    { name: 'Maria', grade: 9 }
+];
+
+const teachers = [
+    { name: 'Mark', salary: 2500 },
+    { name: 'Todd', salary: 3700 },
+    { name: 'Angela', salary: 1900 }
+];
+
+const byName = object => object.name;
+const byNames = list => list.map(byName);
+
+byNames(students); // ["Anna", "John", "Maria"]
+byNames(teachers); // ["Mark", "Todd", "Angela"]
+```
 
 ## Reduce() method
 
-O `reduce()`método pode ser usado para transformar uma matriz em outra coisa, que pode ser um número inteiro, um objeto, uma cadeia de promessas (execução sequencial de promessas) etc. Por razões práticas, um caso de uso simples seria somar uma lista de números inteiros . Em resumo, "reduz" toda a matriz em um valor.
+Uma das funções que mais gera dúvidas é o reduce.
+
+O `reduce()`método pode ser usado para transformar uma matriz em outra coisa, que pode ser um número inteiro, um objeto, uma cadeia de promessas (execução sequencial de promessas) etc. Por razões práticas, um caso de uso simples seria somar uma lista de números inteiros.
+Em resumo, ele recebe como parâmetro um callback e um valor inicial, com o objetivo de "reduzir" o array a um único valor.
 
 **Por que devo usá-lo?**
 
@@ -581,24 +657,80 @@ O `reduce()`método pode ser usado para transformar uma matriz em outra coisa, q
 **Exemplo:**
 digamos que você queira descobrir suas despesas totais por uma semana. Use `reduce()`para obter esse valor.
 
+O cenário mais comum para explicar o reduce é uma soma:
+
 #### **ES5**
 
 ```js
 const despesas = [300, 280, 150, 450];
-listaDePrecos.map(function(first, last){
+listaDePrecos.reduce(function(first, last){
 return first + last;
 });
 // Output: [1180]
+```
+Outro Exemplo
+
+```
+var numbers = [1, 2, 3];
+
+var sum = function(x, y) {
+    return x + y;
+};
+
+var numbersSum = numbers.reduce(sum, 0); // 6
 ```
 
 #### **ES6**
 
 ```js
 const despesas = [300, 280, 150, 450];
-idade.every((first, last) => first + last);
+idade.reduce((first, last) => first + last);
 // [1180]
 ```
 
+Outro Exemplo
+
+```
+const numbers = [1, 2, 3];
+const sum = (x, y) => x + y;
+const numbersSum = numbers.reduce(sum, 0); // 6
+```
+
+> O primeiro parâmetro é a função que será aplicada, no caso uma soma. 
+> E o segundo parâmetro é o valor inicial. Se por algum motivo precisássemos começar a soma com 10, faríamos dessa forma:
+
+Mas o reduce não serve apenas para somas, podemos também trabalhar com strings. Imaginando que nós temos um array de meses e precisamos retornar o meses dessa forma: JAN/FEV/MAR … / DEZ.
+Podemos fazer assim:
+
+```
+var months = ['JAN', 'FEV', 'MAR', /*...*/ , 'DEZ'];
+
+var monthsShortener = function(previous, current) {
+    return previous + '/' + current;
+};
+
+var shortenedMonths = months.reduce(monthsShortener, '');
+// /JAN/FEV/MAR ... /DEZ
+```
+Nós queríamos isso: JAN/FEV/MAR … /DEZ
+Mas obtivemos isso: /JAN/FEV/MAR … /DEZ
+
+Função monthsShortener para adicionar uma condição que faça a prevenção desse erro:
+
+```
+var months = ['JAN', 'FEV', 'MAR', /*...*/ , 'DEZ'];
+
+var monthsShortener = function(previous, current) {
+    if (previous === '') {
+        return current;
+    } else {
+        return previous + '/' + current;
+   }
+};
+
+var shortenedMonths = months.reduce(monthsShortener, '');
+// JAN/FEV/MAR ... /DEZ
+```
 ------
 
 Global Ref:  https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/rest_parameters 
