@@ -44,6 +44,112 @@ function fn(x, y = 5) {
 fn(5); // retorna 10
 ```
 
+## Array Find
+
+<p align="justify">
+O find() método retorna o valor do primeiro elemento da matriz que passa em uma função de teste.
+Este exemplo localiza (retorna o valor de) o primeiro elemento maior que 18:
+</p>
+
+##### Exemplo
+
+```JS
+var numbers = [4, 9, 16, 25, 29];
+var first = numbers.find(myFunction);
+
+function myFunction(value, index, array) {
+  return value > 18;
+}
+```
+Observe que a função usa 3 argumentos:
+
+- O valor do item
+- O índice do item
+- A própria matriz
+
+
+## Array FindIndex
+
+O findIndex()método retorna o índice do primeiro elemento da matriz que passa em uma função de teste.
+Este exemplo localiza o índice do primeiro elemento maior que 18:
+
+##### Exemplo
+```JS
+var numbers = [4, 9, 16, 25, 29];
+var first = numbers.findIndex(myFunction);
+
+function myFunction(value, index, array) {
+  return value > 18;
+}
+```
+Observe que a função usa 3 argumentos:
+
+- O valor do item
+- O índice do item
+- A própria matriz
+
+
+## Novas Propriedades de Número
+O ES6 adicionou as seguintes propriedades ao objeto Number:
+
+- EPSILON
+- MIN_SAFE_INTEGER
+- MAX_SAFE_INTEGER
+
+##### Exemplo
+```js
+var x = Number.EPSILON;
+var x = Number.MIN_SAFE_INTEGER;
+var x = Number.MAX_SAFE_INTEGER;
+```
+## Novos Métodos Numéricos
+O ES6 adicionou 2 novos métodos ao objeto Number:
+
+- Number.isInteger()
+- Number.isSafeInteger()
+
+#### O método Number IsInteger
+O Number.isInteger() método retornará truese o argumento for um número inteiro.
+
+##### Exemplo
+```js
+Number.isInteger(10);        // returns true
+Number.isInteger(10.5);      // returns false
+```
+#### O método Number IsSafeInteger
+Um número inteiro seguro é um número inteiro que pode ser representado exatamente como um número de precisão dupla.
+O Number.isSafeInteger() método retornará truese o argumento for um número inteiro seguro.
+
+##### Exemplo
+```js
+Number.isSafeInteger(10);    // returns true
+Number.isSafeInteger(12345678901234567890);  // returns false
+```
+
+Inteiros seguros são todos os números inteiros de - (2 53 - 1) a + (2 53 - 1).
+Isso é seguro: 9007199254740991. Isso não é seguro: 9007199254740992.
+
+Novos métodos globais
+O ES6 também adicionou 2 novos métodos de número global:
+
+- isFinite()
+- isNaN()
+
+#### O Método IsFinite
+
+O isFinite()método global retornará falsese o argumento for Infinityou NaN.
+
+Caso contrário, ele retorna true:
+
+##### Exemplo
+
+```js
+isFinite(10/0);       // returns false
+isFinite(10/1);       // returns true
+```
+
+
+
 ## Higher-Order Functions
 
 #### Função de Ordem Superior
@@ -61,23 +167,20 @@ Todas as outras funções são de primeira ordem. Em matemática, funções de o
 No cálculo lambda sem tipo, todas as funções são de ordem superior; em um cálculo lambda digitado, do qual a maioria das linguagens de programação funcionais são derivadas, funções de ordem superior que assumem uma função como argumento são valores com tipos do formato.
 </p>
 
-![equation](https://latex.codecogs.com/gif.latex?({T_1}->{T_2})->{T_3})
+
+$$
+{T_1}->{T_2})->{T_3}
+$$
+
 
 #### Exemplos
 ##### Javascript
 
-```javascript
+```js
 function test(){
 	const y = (f, x) => f(f(x));
 	const z = x => x + 3;
 	y(z, 7); // 13
-}
-```
-##### C(#)
-```C#
-Func<Func<int,int>,Func<int,int>> twice = f => x => f(f(x));
-	Func<int,int> y = x => x + 3;
-	Console.WriteLine(twice(y)(7)); // 13
 }
 ```
 ## Arrow Functions
@@ -87,14 +190,34 @@ As funções de seta permitem uma sintaxe curta para escrever expressões de fun
 Você não precisa da functionpalavra - chave, da returnpalavra - chave e dos colchetes .
 
 ###### ES5
-```
+```js
 var x = function(x, y) {
    return x * y;
 }
 ```
 ###### ES6
-```
+```js
 const x = (x, y) => x * y;
 ou
 const x = (x, y) => { return x * y };
+```
+
+#### O Método IsNaN 
+
+O mundial `isNaN()`método retorna `true`se o argumento for `NaN`. Caso contrário, ele retorna `false`:
+
+##### Exemplo
+
+```js
+isNaN("Hello");    // returns true
+```
+
+#### Operador de Exponenciação
+
+O operador de **exponenciação** ( `**`) eleva o primeiro operando à potência do segundo operando.
+
+##### Exemplo
+```js
+var x = 5;
+var z = x ** 2;     // result is 25
 ```
