@@ -670,7 +670,7 @@ return first + last;
 ```
 Outro Exemplo
 
-```
+```js
 var numbers = [1, 2, 3];
 
 var sum = function(x, y) {
@@ -690,21 +690,21 @@ idade.reduce((first, last) => first + last);
 
 Outro Exemplo
 
-```
+```js
 const numbers = [1, 2, 3];
 const sum = (x, y) => x + y;
 const numbersSum = numbers.reduce(sum, 0); // 6
 ```
-
 > O primeiro parâmetro é a função que será aplicada, no caso uma soma. 
 > E o segundo parâmetro é o valor inicial. Se por algum motivo precisássemos começar a soma com 10, faríamos dessa forma:
 
 Mas o reduce não serve apenas para somas, podemos também trabalhar com strings. Imaginando que nós temos um array de meses e precisamos retornar o meses dessa forma: JAN/FEV/MAR … / DEZ.
 Podemos fazer assim:
 
-```
-var months = ['JAN', 'FEV', 'MAR', /*...*/ , 'DEZ'];
+#### **ES5**
 
+```js
+var months = ['JAN', 'FEV', 'MAR', /*...*/ , 'DEZ'];
 var monthsShortener = function(previous, current) {
     return previous + '/' + current;
 };
@@ -712,15 +712,15 @@ var monthsShortener = function(previous, current) {
 var shortenedMonths = months.reduce(monthsShortener, '');
 // /JAN/FEV/MAR ... /DEZ
 ```
+
 Nós queríamos isso: JAN/FEV/MAR … /DEZ
 Mas obtivemos isso: /JAN/FEV/MAR … /DEZ
 
 Função monthsShortener para adicionar uma condição que faça a prevenção desse erro:
 
-```
-var months = ['JAN', 'FEV', 'MAR', /*...*/ , 'DEZ'];
-
-var monthsShortener = function(previous, current) {
+```js
+const months = ['JAN', 'FEV', 'MAR', /*...*/ , 'DEZ'];
+const monthsShortener = (previous, current) => {
     if (previous === '') {
         return current;
     } else {
@@ -728,9 +728,135 @@ var monthsShortener = function(previous, current) {
    }
 };
 
-var shortenedMonths = months.reduce(monthsShortener, '');
+const shortenedMonths = months.reduce(monthsShortener, '');
 // JAN/FEV/MAR ... /DEZ
 ```
+
+#### **ES6**
+
+```js
+const months = ['JAN', 'FEV', 'MAR', /*...*/ , 'DEZ'];
+
+const monthsShortener = (previous, current) => {
+    if (previous === '') {
+        return current;
+    } else {
+        return previous + '/' + current;
+   }
+};
+
+const shortenedMonths = months.reduce(monthsShortener, '');
+// JAN/FEV/MAR ... /DEZ
+```
+
+## Currying
+
+A técnica de transformar uma função com múltiplos parâmetros em uma sequência de funções que aceitam apenas um parâmetro é chamada de Currying.
+
+Se na teoria ficou confuso, na prática seria transformar isso:
+
+```js
+var add = function(x, y) {
+   return x + y;
+};
+
+add(1, 2) // 3
+``` 
+
+#### Nisso
+
+```js
+var add = function(x) {
+    return function(y) {
+        return x + y;
+    };
+};
+
+add(1)(2); // 3
+```
+
+A princípio parece que estamos apenas adicionando mais dificuldade sem nenhum ganho. Porém temos uma grande vantagem: transformar 0 código em pequenos pedaços mais expressivos e com maior reuso.
+Pensando em uma aplicação que possui diversos trechos do código uma soma com 5 e outra com 10, podemos usar a segunda versão da função add dessa forma:
+
+```js
+var addFive = add(5);
+var addTen = add(10);
+
+addFive(3); // 8
+addFive(1); // 6
+
+addTen(1); // 11
+addTen(10); //20
+```
+Mais um exemplo seria um Hello World simples com uma curried function. Podemos implementá-lo desse jeito com ES5:
+
+#### **ES5**
+
+```js
+var greeting = function(greet) {
+    return function(name) {
+        return greet + ' ' + name;
+    };
+};
+
+var hello = greeting('Hello');
+hello('World'); // Hello World
+hello('Matheus'); // Hello Matheus
+```
+
+#### **ES6**
+
+```js
+const greeting = greet => name => greet + ' ' + name;
+const hello = greeting('Hello');
+
+hello('World'); // Hello World
+hello('Matheus'); // Hello Matheus
+```
+
+## Compose
+
+Podemos compor funções pequenas para gerar outras mais complexas de forma bem fácil em JavaScript. A vantagem é o poder de usar essas funções mais complexas, de forma simples, em toda aplicação. Ou seja, aumentamos o reuso.
+Por exemplo, em uma aplicação em que necessitamos de uma função para transformar uma string passada pelo usuário em um grito: mudar para caracteres maiúsculos e adicionar uma exclamação no final. Podemos fazer assim em ES5:
+
+#### **ES5**
+
+```js
+var compose = function(f, g) {
+    return function(x) {
+        return f(g(x));
+    };
+};
+
+var toUpperCase = function(x) {
+    return x.toUpperCase();
+};
+
+var exclaim = function(x) {
+    return x + '!';
+};
+
+var angry = compose(toUpperCase, exclaim);
+
+angry('ahhh'); // AHHH!
+```
+
+#### **ES6**
+
+```js
+const compose = (f, g) => x => f(g(x));
+
+const toUpperCase = x => x.toUpperCase();
+const exclaim = x => x + '!';
+
+const angry = compose(toUpperCase, exclaim);
+
+angry('ahhh'); // AHHH!
+```
+
+
+
+
 ------
 
 Global Ref:  https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/rest_parameters 
