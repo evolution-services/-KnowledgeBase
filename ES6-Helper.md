@@ -1,12 +1,42 @@
+## JavaScript let
+
+The `let` statement allows you to declare a variable with block scope.
+
+##### Example
+```js
+var x = 10;
+// Here x is 10
+{
+ let x = 2;
+ // Here x is 2
+}
+// Here x is 10
+```
+
+## JavaScript const
+
+The `const` statement allows you to declare a constant (a JavaScript variable with a constant value).
+Constants are similar to let variables, except that the value cannot be changed.
+
+##### Example
+
+```js
+var x = 10;
+// Here x is 10
+{
+ const x = 2;
+ // Here x is 2
+}
+// Here x is 10
+```
+
 ## Classes no ES6
 
 <p align="justify">
-Uma classe é um tipo de função, mas, em vez de usar a palavra function- chave para iniciá-la, usamos a palavra-chave classe as propriedades são atribuídas dentro de um constructor() método.
+Uma classe é um tipo de função, mas, em vez de usar a palavra function - chave para iniciá-la, usamos a palavra-chave classe as propriedades são atribuídas dentro de um constructor() método.
 </p>
 <p align="justify">
-Use a palavra class- chave para criar uma classe e sempre adicione um método construtor.
-</p>
-<p align="justify">
+Use a palavra class- chave para criar uma classe e sempre adicione um método construtor.<br />
 O método construtor é chamado sempre que o objeto de classe é inicializado.
 </p>
 
@@ -126,10 +156,10 @@ Number.isSafeInteger(10);    // returns true
 Number.isSafeInteger(12345678901234567890);  // returns false
 ```
 
-Inteiros seguros são todos os números inteiros de - (2 53 - 1) a + (2 53 - 1).
-Isso é seguro: 9007199254740991. Isso não é seguro: 9007199254740992.
+> *Inteiros seguros são todos os números inteiros de - (2 53 - 1) a + (2 53 - 1).*
+> *Isso é seguro: 9007199254740991. Isso não é seguro: 9007199254740992.*
 
-Novos métodos globais
+#### Novos Métodos Globais
 O ES6 também adicionou 2 novos métodos de número global:
 
 - isFinite()
@@ -168,10 +198,10 @@ var x = 5;
 var z = x ** 2;     // result is 25
 ```
 
-`x ** y` produz o mesmo resultado que `Math.pow(x,y)`:
+> `x ** y` produz o mesmo resultado que `Math.pow(x,y)`:
 
 ##### Exemplo
-```
+```js
 var x = 5;
 var z = Math.pow(x,2);  // result is 25
 ```
@@ -185,9 +215,10 @@ Em matemática e ciências da computação, uma função de ordem superior é um
 Todas as outras funções são de primeira ordem. Em matemática, funções de ordem superior também são denominadas operadores ou funcionais. O operador diferencial no cálculo é um exemplo comum, pois mapeia uma função para sua derivada, também uma função. Funções de ordem superior não devem ser confundidas com outros usos da palavra "functor" ao longo da matemática.
 </p>
 
-<p align="justify">	
-	<b>Functor: </b> <i>(em teoria das categorias, é um mapeamento entre categorias que preserva estruturas).</i>
-</p>
+> <p align="justify">	
+> 	<b>Functor: </b> <i>(em teoria das categorias, é um mapeamento entre categorias que preserva estruturas).</i>
+> </p>
+>
 
 <p align="justify">
 No cálculo lambda sem tipo, todas as funções são de ordem superior; em um cálculo lambda digitado, do qual a maioria das linguagens de programação funcionais são derivadas, funções de ordem superior que assumem uma função como argumento são valores com tipos do formato.
@@ -212,7 +243,6 @@ function test(){
 ## Arrow Functions
 
 As funções de seta permitem uma sintaxe curta para escrever expressões de função.
-
 Você não precisa da functionpalavra - chave, da returnpalavra - chave e dos colchetes .
 
 ###### ES5
@@ -227,3 +257,4 @@ const x = (x, y) => x * y;
 ou
 const x = (x, y) => { return x * y };
 ```
+
