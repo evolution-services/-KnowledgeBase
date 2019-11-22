@@ -148,7 +148,33 @@ isFinite(10/0);       // returns false
 isFinite(10/1);       // returns true
 ```
 
+#### O Método IsNaN 
 
+O mundial `isNaN()`método retorna `true`se o argumento for `NaN`. Caso contrário, ele retorna `false`:
+
+##### Exemplo
+
+```js
+isNaN("Hello");    // returns true
+```
+
+## Operador de Exponenciação
+
+O operador de **exponenciação** ( `**`) eleva o primeiro operando à potência do segundo operando.
+
+##### Exemplo
+```js
+var x = 5;
+var z = x ** 2;     // result is 25
+```
+
+`x ** y` produz o mesmo resultado que `Math.pow(x,y)`:
+
+##### Exemplo
+```
+var x = 5;
+var z = Math.pow(x,2);  // result is 25
+```
 
 ## Higher-Order Functions
 
@@ -200,24 +226,4 @@ var x = function(x, y) {
 const x = (x, y) => x * y;
 ou
 const x = (x, y) => { return x * y };
-```
-
-#### O Método IsNaN 
-
-O mundial `isNaN()`método retorna `true`se o argumento for `NaN`. Caso contrário, ele retorna `false`:
-
-##### Exemplo
-
-```js
-isNaN("Hello");    // returns true
-```
-
-#### Operador de Exponenciação
-
-O operador de **exponenciação** ( `**`) eleva o primeiro operando à potência do segundo operando.
-
-##### Exemplo
-```js
-var x = 5;
-var z = x ** 2;     // result is 25
 ```
