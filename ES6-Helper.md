@@ -1,6 +1,6 @@
 ## JavaScript let
 
-The `let` statement allows you to declare a variable with block scope.
+A instrução `let` permite declarar uma variável com escopo de bloco.
 
 ##### Example
 ```js
@@ -15,8 +15,8 @@ var x = 10;
 
 ## JavaScript const
 
-The `const` statement allows you to declare a constant (a JavaScript variable with a constant value).
-Constants are similar to let variables, except that the value cannot be changed.
+A instrução `const` permite declarar uma constante (uma variável JavaScript com um valor constante).
+As constantes são semelhantes a deixar variáveis, exceto que o valor não pode ser alterado.
 
 ##### Example
 
@@ -228,11 +228,9 @@ No cálculo lambda sem tipo, todas as funções são de ordem superior; em um c�
 </p>
 
 
-<img src="https://latex.codecogs.com/gif.latex?{T_1}->{T_2})->{T_3}" title="({T_1}->{T_2})->{T_3}" />
-
-<!--$$
+$$
 {T_1}->{T_2})->{T_3}
-$$-->
+$$
 
 
 #### Exemplos
