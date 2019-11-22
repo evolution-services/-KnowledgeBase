@@ -25,11 +25,10 @@ Func<Func<int,int>,Func<int,int>> twice = f => x => f(f(x));
 	Console.WriteLine(twice(y)(7)); // 13
 }
 ```
----
+## Arrow Functions
 
-### Arrow Functions
----
 As funções de seta permitem uma sintaxe curta para escrever expressões de função.
+
 Você não precisa da functionpalavra - chave, da returnpalavra - chave e dos colchetes .
 
 ###### ES5
