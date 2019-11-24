@@ -35,6 +35,7 @@ public static string Assinar(X509Certificate2 certificado, string xml)
 }
 ```
 
+
 ## Recuperar Certificado com base na Chave
 
 ```c#
@@ -66,5 +67,34 @@ public static X509Certificate2 Certificado()
     }
 }
 
+```
+
+
+## Verificar a assinatura do arquivo xml
+
+
+```c#
+// Verificar Assinatura Desanexada
+public static Boolean VerifyDetachedSignature(string XmlSigFileName)
+{	
+    // Create a new XML document.
+    XmlDocument xmlDocument = new XmlDocument();
+
+    // Load the passed XML file into the document.
+    xmlDocument.Load(XmlSigFileName);
+
+    // Create a new SignedXMl object.
+    SignedXml signedXml = new SignedXml();
+
+    // Find the "Signature" node and create a new
+    // XmlNodeList object.
+    XmlNodeList nodeList = xmlDocument.GetElementsByTagName("Signature");
+
+    // Load the signature node.
+    signedXml.LoadXml((XmlElement)nodeList[0]);
+
+    // Check the signature and return the result.
+    return signedXml.CheckSignature();
+}
 ```
 
