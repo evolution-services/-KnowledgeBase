@@ -1,7 +1,7 @@
-## Assinatura X509Certificate2
+## Assinatura com X509Certificate2
 
 ```c#
-public static string AssinarXML(X509Certificate2 certificado, string xml)
+public static string Assinar(X509Certificate2 certificado, string xml)
 {
     XmlDocument doc = new XmlDocument();
     doc.PreserveWhitespace = false;
@@ -21,7 +21,7 @@ public static string AssinarXML(X509Certificate2 certificado, string xml)
         signedXml.AddReference(reference);
 
         KeyInfo keyInfo = new KeyInfo();
-        keyInfo.AddClause(new KeyInfoX509Data(certificado));
+        keyInfo.AddClause(new KeyInfoX509Data(certificado));        
         signedXml.KeyInfo = keyInfo;
         signedXml.ComputeSignature();
         XmlElement xmlDigitalSignature = signedXml.GetXml();
@@ -33,5 +33,38 @@ public static string AssinarXML(X509Certificate2 certificado, string xml)
     	throw ex;
     }
 }
+```
+
+## Recuperar Certificado com base na Chave
+
+```c#
+public static X509Certificate2 Certificado()
+{   
+    X509Certificate2 _X509Cert = new X509Certificate2();
+    string _Certkey = "Chave do Certificado";
+    try
+    {
+        X509Store store = new X509Store("MY", StoreLocation.LocalMachine);
+        store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
+        X509Certificate2Collection collection = (X509Certificate2Collection)store.Certificates;
+        X509Certificate2Collection collection2 = (X509Certificate2Collection)collection.Find(X509FindType.FindByKeyUsage, X509KeyUsageFlags.DigitalSignature, false);
+        for (int i = 0; i < collection.Count; i++)
+        {
+            if (String.Compare(collection[i].SerialNumber, _Certkey, true) == 0)
+            {
+                _X509Cert = (X509Certificate2)collection[i];
+                store.Close();
+                return _X509Cert;
+            }
+        }
+        store.Close();
+        throw new Exception(string.Format("{0} {1}", "Nenhum certificado válido encontrado para a chave informada: ", _Certkey));
+    }
+    catch (System.Exception ex)
+    {
+        throw ex;
+    }
+}
+
 ```
 
