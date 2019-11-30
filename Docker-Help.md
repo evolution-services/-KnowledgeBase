@@ -3,6 +3,6 @@
 
 docker rm -f $(docker ps -a -q)
 
-##Delete every Docker image
+## Delete every Docker image
 
 docker rmi -f $(docker images -q)
