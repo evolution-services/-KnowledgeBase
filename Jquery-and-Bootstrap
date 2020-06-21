@@ -1,0 +1,6 @@
+
+// Pass Data To Modal
+$('#my-modal').on('show.bs.modal', function (event) {
+  var myVal = $(event.relatedTarget).data('val');
+  $(this).find(".modal-body").text(myVal);
+});
