@@ -1,9 +1,9 @@
-
 ## Jquery - Bootstrap
 
-Passando dados para modal bootstrap usando jquery
+### Passando dados para modal bootstrap usando jquery
 
 ##### Example
+
 ```js
 $('#my-modal').on('show.bs.modal', function (event) {
   var myVal = $(event.relatedTarget).data('val');
