@@ -8,7 +8,9 @@ docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "transpo
 ```
 
 ## Setup Kibana Docker
+```ps
 docker run --link elastic:elastic-url -e "ELASTICSEARCH_URL=http://elastic-url:9200" -e ELASTICSEARCH_PASSWORD="my@password" -p 5601:5601 --name kibana docker.elastic.co/kibana/kibana:6.8.11 
+```
 
 ## Setup Kibana Dashboard
 ```ps
