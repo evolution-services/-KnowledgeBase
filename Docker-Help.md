@@ -15,8 +15,11 @@ docker run --net="host" docker.elastic.co/beats/metricbeat:7.8.1 setup -e \ -E o
 ## Delete every Docker containers
 #### Must be run first because images are attached to containers
 
+```ps
 docker rm -f $(docker ps -a -q)
-
+```
 ## Delete every Docker image
 
+```ps
 docker rmi -f $(docker images -q)
+```
