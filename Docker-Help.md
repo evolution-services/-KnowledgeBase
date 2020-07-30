@@ -9,8 +9,9 @@ docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "transpo
 docker run --link elastic:elastic-url -e "ELASTICSEARCH_URL=http://elastic-url:9200" -e ELASTICSEARCH_PASSWORD="my@password" -p 5601:5601 --name kibana docker.elastic.co/kibana/kibana:6.8.11 
 
 ## Setup Kibana Dashboard
+```ps
 docker run --net="host" docker.elastic.co/beats/metricbeat:7.8.1 setup -e \ -E output.logstash.enabled=false \ -E output.elasticsearch.hosts=['localhost:9200'] \ -E output.elasticsearch.username=metricbeat_internal \ -E output.elasticsearch.password="my@password" \ -E setup.kibana.host=localhost:5601
-
+```
 ## Delete every Docker containers
 #### Must be run first because images are attached to containers
 
