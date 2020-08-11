@@ -855,10 +855,8 @@ angry('ahhh'); // AHHH!
 ## Check Date is válid
 
 ```js
-        function isDate(date) {
-            var newDate = new Date(date.split('/').reverse().join('-'));
-            return newDate instanceof Date;
-        }
+var newDate = new Date(date.split('/').reverse().join('-'));
+return newDate instanceof Date;
 ```
 
 
