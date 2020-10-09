@@ -1,6 +1,6 @@
 # CALL API From VBScript
 Set oCon = Server.CreateObject("MSXML2.ServerXMLHTTP.6.0")
-oCon.Open "POST", "https://api.rendimento.com.br/oauth/access-token", false
+oCon.Open "POST", "UrAPI", false
 oCon.SetRequestHeader "Content-Type", "application/x-www-form-urlencoded"
 oCon.SetRequestHeader "Authorization", "Basic " & Base64Encode("93ae7b3f-6a6b-3ddb-9c90-2cc63b14143b" & ":" & "39ffe226-6640-337c-b0fd-9f975ae77691")
 oCon.Send("grant_type=client_credentials")
