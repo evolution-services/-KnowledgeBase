@@ -1,4 +1,4 @@
-##### XML WebConfig - WebForms
+##### XML WebConfig WebForms - Redirect Https by Default
 
 ```xml
 <configuration>
