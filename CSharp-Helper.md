@@ -1,3 +1,23 @@
+##### XML WebConfig - WebForms
+
+```xml
+<configuration>
+ <system.webServer>
+ <rewrite>
+ <rules>
+ <rule name="HTTPS force" enabled="true" stopProcessing="true">
+ <match url="(.*)" />
+ <conditions>
+ <add input="{HTTPS}" pattern="^OFF$" />
+ </conditions>
+ <action type="Redirect" url="https://{HTTP_HOST}{REQUEST_URI}" redirectType="Permanent" />
+ </rule>
+ </rules>
+ </rewrite>
+ </system.webServer>
+</configuration>
+```
+
 ##### C(#)
 
 ```c#
@@ -6,9 +26,6 @@ Func<Func<int,int>,Func<int,int>> twice = f => x => f(f(x));
 	Console.WriteLine(twice(y)(7)); // 13
 }
 ```
-
-## 
-
 
 ##### Parcelamento com Coeficiente de Financiamento
 
