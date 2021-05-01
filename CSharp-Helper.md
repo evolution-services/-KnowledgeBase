@@ -106,15 +106,15 @@ public class Program
 	public static void Main()
 	{
 		double amount = 999999999.99;
-		Console.WriteLine(amount.ToString("N")); // Numeric format	- 999,999,999.99
-		Console.WriteLine(amount.ToString("C")); // Standard system format - ¤999,999,999.99
-		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("pt-br")));    //  R$ 999.999.999,99
-		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("en-au")));    //  $999,999,999.99
-		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("en-us")));    //  $999,999,999.99
-		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("en-ca")));    //  $999,999,999.99		
-		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("en-ie")));    //  €999,999,999.99
-		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("es-es")));    //  999.999.999,99 € 		
-		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("en-GB")));    //  £999,999,999.99
+		Console.WriteLine(amount.ToString("N")); // Numeric format.			// 999,999,999.99
+		Console.WriteLine(amount.ToString("C")); // Standard system format. 		// ¤999,999,999.99
+		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("pt-br")));   //  R$ 999.999.999,99
+		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("en-au")));   //  $999,999,999.99
+		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("en-us")));   //  $999,999,999.99
+		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("en-ca")));   //  $999,999,999.99		
+		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("en-ie")));   //  €999,999,999.99
+		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("es-es")));   //  999.999.999,99 € 		
+		Console.WriteLine(amount.ToString("C", CultureInfo.GetCultureInfo("en-GB")));   //  £999,999,999.99
 
 		
 	}
