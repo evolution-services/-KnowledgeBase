@@ -122,4 +122,62 @@ public class Program
 
 ```
 
+#### Parent Child Hierarchy
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ConsoleApp2
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var categories = new List<Category>() {
+                new Category {Id = 1, ParentId = 0, Name = "Celulares"},
+                new Category {Id = 2, ParentId = 1, Name = "Samsung"},
+                new Category {Id = 3, ParentId = 1, Name = "LG"},
+                new Category {Id = 4, ParentId = 0, Name = "Eletronicos"},
+                new Category {Id = 5, ParentId = 4, Name = "Fones"},
+                new Category {Id = 6, ParentId = 5, Name = "Sony"}
+            };
+
+            var hierarchy = new List<Category>();
+            var hierarchyResult = GetCategoryChildren(1, hierarchy, categories);
+
+            foreach (var h in hierarchyResult)
+            {
+                Console.WriteLine($"Filho: {h.Id} - Pai: {h.ParentId} - Nome: {h.Name}");
+            }
+        }
+
+        public static IEnumerable<Category> GetCategoryChildren(int id, List<Category> hierarchy, List<Category> dataCategory)
+        {
+            var children = dataCategory.Where(x => x.ParentId == id);
+
+            while (children != null && children.Count() > 0)
+            {
+                foreach (var child in children)
+                {
+                    hierarchy.Add(child);                    
+                    GetCategoryChildren(child.Id, hierarchy, dataCategory);
+                }
+                return hierarchy;
+            }
+            return hierarchy;
+        }
+
+    }
+
+    public class Category
+    {
+        public int Id { get; set; }
+        public int ParentId { get; set; }
+        public string Name { get; set; }
+    }
+}
+```
+
 ## 
