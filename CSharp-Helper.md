@@ -64,28 +64,36 @@ public class Program
 ##### Format DateTime options
 
 ```C#
-DateTime.Now.ToString("MM/dd/yyyy")	05/29/2015
-DateTime.Now.ToString("dddd, dd MMMM yyyy")	Friday, 29 May 2015
-DateTime.Now.ToString("dddd, dd MMMM yyyy")	Friday, 29 May 2015 05:50
-DateTime.Now.ToString("dddd, dd MMMM yyyy")	Friday, 29 May 2015 05:50 AM
-DateTime.Now.ToString("dddd, dd MMMM yyyy")	Friday, 29 May 2015 5:50
-DateTime.Now.ToString("dddd, dd MMMM yyyy")	Friday, 29 May 2015 5:50 AM
-DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss")	Friday, 29 May 2015 05:50:06
-DateTime.Now.ToString("MM/dd/yyyy HH:mm")	05/29/2015 05:50
-DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")	05/29/2015 05:50 AM
-DateTime.Now.ToString("MM/dd/yyyy H:mm")	05/29/2015 5:50
-DateTime.Now.ToString("MM/dd/yyyy h:mm tt")	05/29/2015 5:50 AM
-DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")	05/29/2015 05:50:06
-DateTime.Now.ToString("MMMM dd")	May 29
-DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK")	2015-05-16T05:50:06.7199222-04:00
-DateTime.Now.ToString("ddd, dd MMM yyy HH’:’mm’:’ss ‘GMT’")	Fri, 16 May 2015 05:50:06 GMT
-DateTime.Now.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss")	2015-05-16T05:50:06
-DateTime.Now.ToString("HH:mm")	05:50
-DateTime.Now.ToString("hh:mm tt")	05:50 AM
-DateTime.Now.ToString("H:mm")	5:50
-DateTime.Now.ToString("h:mm tt")	5:50 AM
-DateTime.Now.ToString("HH:mm:ss")	05:50:06
-DateTime.Now.ToString("yyyy MMMM")	2015 May
+using System;				
+public class Program
+{
+	public static void Main()
+	{
+		var dateStart = DateTime.Now;
+		Console.WriteLine(dateStart.ToString("MM/dd/yyyy"));					// 05/29/2015
+		Console.WriteLine(dateStart.ToString("dddd, dd MMMM yyyy"));				// Friday, 29 May 2015
+		Console.WriteLine(dateStart.ToString("dddd, dd MMMM yyyy"));				// Friday, 29 May 2015 05:50
+		Console.WriteLine(dateStart.ToString("dddd, dd MMMM yyyy"));				// Friday, 29 May 2015 05:50 AM
+		Console.WriteLine(dateStart.ToString("dddd, dd MMMM yyyy"));				// Friday, 29 May 2015 5:50
+		Console.WriteLine(dateStart.ToString("dddd, dd MMMM yyyy"));				// Friday, 29 May 2015 5:50 AM
+		Console.WriteLine(dateStart.ToString("dddd, dd MMMM yyyy HH:mm:ss"));			// Friday, 29 May 2015 05:50:06
+		Console.WriteLine(dateStart.ToString("MM/dd/yyyy HH:mm"));				// 05/29/2015 05:50
+		Console.WriteLine(dateStart.ToString("MM/dd/yyyy hh:mm tt"));				// 05/29/2015 05:50 AM
+		Console.WriteLine(dateStart.ToString("MM/dd/yyyy H:mm"));				// 05/29/2015 5:50
+		Console.WriteLine(dateStart.ToString("MM/dd/yyyy h:mm tt"));				// 05/29/2015 5:50 AM
+		Console.WriteLine(dateStart.ToString("MM/dd/yyyy HH:mm:ss"));				// 05/29/2015 05:50:06
+		Console.WriteLine(dateStart.ToString("MMMM dd"));					// May 29
+		Console.WriteLine(dateStart.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss.fffffffK"));	// 2015-05-16T05:50:06.7199222-04:00
+		Console.WriteLine(dateStart.ToString("ddd, dd MMM yyy HH’:’mm’:’ss ‘GMT’"));		// Fri, 16 May 2015 05:50:06 GMT
+		Console.WriteLine(dateStart.ToString("yyyy’-‘MM’-‘dd’T’HH’:’mm’:’ss"));			// 2015-05-16T05:50:06
+		Console.WriteLine(dateStart.ToString("HH:mm"));						// 05:50
+		Console.WriteLine(dateStart.ToString("hh:mm tt"));					// 05:50 AM
+		Console.WriteLine(dateStart.ToString("H:mm"));						// 5:50
+		Console.WriteLine(dateStart.ToString("h:mm tt"));					// 5:50 AM
+		Console.WriteLine(dateStart.ToString("HH:mm:ss"));					// 05:50:06
+		Console.WriteLine(dateStart.ToString("yyyy MMMM"));					// 2015 May		
+	}
+}
 ```
 
 ##### Currency Format
